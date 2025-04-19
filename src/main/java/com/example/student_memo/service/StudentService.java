@@ -9,12 +9,14 @@ import com.example.student_memo.repository.StudentRepository;
 
 @Service
 public class StudentService {
-    
+
     private final StudentRepository studentRepository;
 
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
+
+    // Filter students based on type
     public List<Student> filterByType(String type) {
         switch (type.toLowerCase()) {
             case "greaterthan90":
@@ -34,5 +36,8 @@ public class StudentService {
             default:
                 return studentRepository.findAll();
         }
+    }
+    public Student addStudent(Student student) {
+        return studentRepository.save(student);
     }
 }
